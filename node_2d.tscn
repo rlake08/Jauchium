@@ -26,20 +26,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="OptionButton" type="OptionButton" parent="CanvasLayer/Control"]
 layout_mode = 0
 offset_right = 118.0
 offset_bottom = 31.0
 selected = 0
-item_count = 4
+item_count = 3
 popup/item_0/text = "Basic Tools"
-popup/item_1/text = "Empty"
+popup/item_1/text = "Create"
 popup/item_1/id = 1
-popup/item_2/text = "Create"
+popup/item_2/text = "Remove"
 popup/item_2/id = 2
-popup/item_3/text = "Remove"
-popup/item_3/id = 3
 script = ExtResource("2_nh4rn")
 
 [node name="Icon" type="Sprite2D" parent="."]

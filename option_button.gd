@@ -16,8 +16,6 @@ func _on_item_selected(index):
 	if (index == 0):
 		character_body_2d.MouseLFunction = "Empty";
 	if (index == 1):
-		character_body_2d.MouseLFunction = "Empty";
-	if (index == 2):
 		character_body_2d.MouseLFunction = "Create";
-	if (index == 3):
+	if (index == 2):
 		character_body_2d.MouseLFunction = "Remove";
