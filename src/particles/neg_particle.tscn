@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2o2c3xgcebl3"]
+
+[ext_resource type="Texture2D" uid="uid://i1pfg65bq4th" path="res://src/asset/img/particle.png" id="1_h3ads"]
+[ext_resource type="Script" path="res://src/particles/base_particle.gd" id="1_hiews"]
+
+[node name="NegParticle" type="Node2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_hiews")
+charge = -1
+
+[node name="Particle" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.373333, 1, 1)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_h3ads")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -5.0
+offset_top = -26.0
+offset_right = 5.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 32
+text = "-"
