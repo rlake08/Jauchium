@@ -16,6 +16,7 @@ func _process(_delta):
 func _on_item_selected(index):
 	if (index == 0):
 		character_body_2d.MouseLFunction = "Empty";
+		character_body_2d.CreateEnabled = false;
 		option_button_2.visible = false;
 		option_button_2.selected = 0;
 		character_body_2d.SpawnType = "none";
