@@ -1,11 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://da8b4y30gboj2"]
+[gd_scene load_steps=11 format=3 uid="uid://da8b4y30gboj2"]
 
 [ext_resource type="Script" path="res://controls.gd" id="1_houcx"]
 [ext_resource type="Texture2D" uid="uid://c3fa74s35ymsi" path="res://icon.svg" id="2_8uty3"]
 [ext_resource type="Script" path="res://option_button.gd" id="2_nh4rn"]
 [ext_resource type="Script" path="res://option_button_2.gd" id="3_gghme"]
+[ext_resource type="Script" path="res://check_button.gd" id="4_dx31f"]
+[ext_resource type="Script" path="res://reset.gd" id="5_fbisf"]
+[ext_resource type="Script" path="res://particles.gd" id="7_4yo50"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2655f"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_s48ck"]
+keycode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_nm7nj"]
+events = [SubResource("InputEventKey_s48ck")]
 
 [node name="Node2D" type="Node2D"]
 
@@ -30,9 +39,9 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="OptionButton" type="OptionButton" parent="CanvasLayer/Control"]
-layout_mode = 0
 offset_right = 118.0
 offset_bottom = 31.0
+focus_mode = 0
 selected = 0
 item_count = 3
 popup/item_0/text = "Basic Tools"
@@ -47,6 +56,7 @@ layout_mode = 0
 offset_left = 118.0
 offset_right = 236.0
 offset_bottom = 31.0
+focus_mode = 0
 selected = 0
 item_count = 4
 popup/item_0/text = "(Create) Select Object..."
@@ -58,9 +68,35 @@ popup/item_3/text = "- Particle"
 popup/item_3/id = 3
 script = ExtResource("3_gghme")
 
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 908.0
+offset_right = 1152.0
+offset_bottom = 31.0
+focus_mode = 0
+action_mode = 0
+shortcut = SubResource("Shortcut_nm7nj")
+text = "Pause Particle Processing"
+script = ExtResource("4_dx31f")
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 1095.0
+offset_top = 31.0
+offset_right = 1146.0
+offset_bottom = 62.0
+focus_mode = 0
+text = "Reset"
+script = ExtResource("5_fbisf")
+
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_8uty3")
 
+[node name="Particles" type="Node2D" parent="."]
+script = ExtResource("7_4yo50")
+
 [connection signal="item_selected" from="CanvasLayer/Control/OptionButton" to="CanvasLayer/Control/OptionButton" method="_on_item_selected"]
 [connection signal="item_selected" from="CanvasLayer/Control/OptionButton2" to="CanvasLayer/Control/OptionButton2" method="_on_item_selected"]
+[connection signal="toggled" from="CanvasLayer/Control/CheckButton" to="CanvasLayer/Control/CheckButton" method="_on_toggled"]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/Control/Button" method="_on_pressed"]

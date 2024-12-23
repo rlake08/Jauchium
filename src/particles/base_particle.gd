@@ -3,6 +3,7 @@ class_name BaseParticle
 
 signal hit_particle(particle_hit: BaseParticle)
 
+var OriginSpeed
 var direction: Vector2 = Vector2(0,0)
 var goal_direction: Vector2 = Vector2(0,0)
 @export var particle_base_collision_volume: Area2D = null
@@ -10,6 +11,7 @@ var goal_direction: Vector2 = Vector2(0,0)
 @export var charge: int = 0
 
 func _enter_tree() -> void:
+	OriginSpeed = speed
 	var x = randi_range(-1,1)
 	randomize()
 	var y = randi_range(-1,1)
@@ -23,6 +25,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var freeze = 1
+	if WindowSpace.SpeedOverride == true:
+		freeze = 0
+	elif WindowSpace.SpeedOverride == false:
+		freeze = 1
+	speed = OriginSpeed * freeze
 	direction = lerp(direction,goal_direction,0.02)
 	global_position += direction*speed*100.0*delta
 	if global_position.x < WindowSpace.left_edge or global_position.x > WindowSpace.right_edge:
