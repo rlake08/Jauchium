@@ -11,7 +11,7 @@ const NEG_PARTICLE = preload("res://src/particles/neg_particle.tscn")
 @onready var option_button_2 = $"../CanvasLayer/Control/OptionButton2"
 @export var Speed = CameraSpeed;
 
-func _ready() -> void:
+func update_windowspace():
 	var size_x = ProjectSettings.get_setting("display/window/size/viewport_width")*(1/camera_2d.zoom.x)
 	var size_y = ProjectSettings.get_setting("display/window/size/viewport_height")*(1/camera_2d.zoom.y)
 	var size = Vector2(size_x,size_y)
@@ -19,6 +19,9 @@ func _ready() -> void:
 	WindowSpace.right_edge = global_position.x+size_x/2
 	WindowSpace.top_edge = global_position.y-size_y/2
 	WindowSpace.bottom_edge = global_position.y+size_y/2
+
+func _ready() -> void:
+	update_windowspace()
 
 func MouseExec(Function):
 		if Function == "Empty":
@@ -48,6 +51,7 @@ func GetInput():
 	
 
 func _process(_delta: float) -> void:
+	
 	if CreateEnabled == true:
 		option_button_2.visible = true
 	else:
@@ -64,6 +68,16 @@ func _unhandled_input(event: InputEvent) -> void:
 				var Function = MouseLFunction;
 				MouseExec(Function);
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.is_pressed():
-			camera_2d.zoom *= Vector2(1.1, 1.1)
+			var old_zoom = camera_2d.zoom.x
+			camera_2d.zoom *= Vector2.ONE*1.1
+			var mouse_x = get_global_mouse_position().x
+			var mouse_y = get_global_mouse_position().y
+			camera_2d.global_position.x -= mouse_x/old_zoom-mouse_x/camera_2d.zoom.x
+			camera_2d.global_position.y -= mouse_y/old_zoom-mouse_y/camera_2d.zoom.x
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.is_pressed():
-			camera_2d.zoom /= Vector2(1.1, 1.1)
+			var old_zoom = camera_2d.zoom.x
+			camera_2d.zoom /= Vector2.ONE*1.1
+			var mouse_x = get_global_mouse_position().x
+			var mouse_y = get_global_mouse_position().y
+			camera_2d.global_position.x += mouse_x/old_zoom-mouse_x/camera_2d.zoom.x
+			camera_2d.global_position.y += mouse_y/old_zoom-mouse_y/camera_2d.zoom.x

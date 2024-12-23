@@ -10,6 +10,7 @@ radius = 48.0
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_dn1r8")
 particle_base_collision_volume = NodePath("CollisionArea")
+base_speed = 0.0
 charge = -1
 
 [node name="Particle" type="Sprite2D" parent="."]
@@ -33,3 +34,5 @@ text = "-"
 shape = SubResource("CircleShape2D_1v33b")
 
 [connection signal="hit_particle" from="." to="." method="_on_hit_particle"]
+[connection signal="particle_left_collision" from="." to="." method="_on_particle_left_collision"]
+[connection signal="update_particle" from="." to="." method="_on_update_particle"]
