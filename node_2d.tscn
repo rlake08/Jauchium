@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://da8b4y30gboj2"]
+[gd_scene load_steps=6 format=3 uid="uid://da8b4y30gboj2"]
 
 [ext_resource type="Script" path="res://controls.gd" id="1_houcx"]
 [ext_resource type="Texture2D" uid="uid://c3fa74s35ymsi" path="res://icon.svg" id="2_8uty3"]
 [ext_resource type="Script" path="res://option_button.gd" id="2_nh4rn"]
+[ext_resource type="Script" path="res://option_button_2.gd" id="3_gghme"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2655f"]
 
@@ -48,13 +49,14 @@ offset_right = 236.0
 offset_bottom = 31.0
 selected = 0
 item_count = 4
-popup/item_0/text = "Select Object..."
+popup/item_0/text = "(Create) Select Object..."
 popup/item_1/text = "= Particle"
 popup/item_1/id = 1
 popup/item_2/text = "+ Particle"
 popup/item_2/id = 2
 popup/item_3/text = "- Particle"
 popup/item_3/id = 3
+script = ExtResource("3_gghme")
 
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false

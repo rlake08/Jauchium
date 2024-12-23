@@ -1,7 +1,7 @@
 extends OptionButton;
 
 @onready var character_body_2d = $"../../../CharacterBody2D";
-@onready var option_button_2 = $"../OptionButton2"
+@onready var option_button = $"../OptionButton"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,17 +12,15 @@ func _ready():
 func _process(_delta):
 	pass;
 
-
 func _on_item_selected(index):
 	if (index == 0):
-		character_body_2d.MouseLFunction = "Empty";
-		option_button_2.visible = false;
-		option_button_2.selected = 0;
 		character_body_2d.SpawnType = "none";
 	if (index == 1):
-		character_body_2d.MouseLFunction = "Create";
-		character_body_2d.CreateEnabled = true;
-		option_button_2.visible = true;
+		character_body_2d.SpawnType = "= Particle";
+		option_button.selected = 1;
 	if (index == 2):
-		character_body_2d.MouseLFunction = "Remove";
-		option_button_2.visible = false;
+		character_body_2d.SpawnType = "+ Particle";
+		option_button.selected = 1;
+	if (index == 3):
+		character_body_2d.SpawnType = "- Particle";
+		option_button.selected = 1;
