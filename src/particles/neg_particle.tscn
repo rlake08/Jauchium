@@ -1,18 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2o2c3xgcebl3"]
+[gd_scene load_steps=4 format=3 uid="uid://c2o2c3xgcebl3"]
 
-[ext_resource type="Texture2D" uid="uid://i1pfg65bq4th" path="res://src/asset/img/particle.png" id="1_h3ads"]
-[ext_resource type="Script" path="res://src/particles/base_particle.gd" id="1_hiews"]
+[ext_resource type="Script" path="res://src/particles/neg_particle.gd" id="1_dn1r8"]
+[ext_resource type="Texture2D" uid="uid://i1pfg65bq4th" path="res://src/asset/img/particle.png" id="2_2a6bm"]
 
-[node name="NegParticle" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1v33b"]
+radius = 48.0
+
+[node name="NegParticle" type="Node2D" node_paths=PackedStringArray("particle_base_collision_volume")]
 scale = Vector2(0.25, 0.25)
-script = ExtResource("1_hiews")
+script = ExtResource("1_dn1r8")
+particle_base_collision_volume = NodePath("CollisionArea")
 charge = -1
 
 [node name="Particle" type="Sprite2D" parent="."]
 modulate = Color(0.2, 0.373333, 1, 1)
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("1_h3ads")
+texture = ExtResource("2_2a6bm")
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
@@ -22,3 +26,10 @@ offset_right = 5.0
 offset_bottom = 19.0
 theme_override_font_sizes/font_size = 32
 text = "-"
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource("CircleShape2D_1v33b")
+
+[connection signal="hit_particle" from="." to="." method="_on_hit_particle"]
