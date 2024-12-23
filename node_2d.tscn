@@ -41,8 +41,24 @@ popup/item_2/text = "Remove"
 popup/item_2/id = 2
 script = ExtResource("2_nh4rn")
 
+[node name="OptionButton2" type="OptionButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 118.0
+offset_right = 236.0
+offset_bottom = 31.0
+selected = 0
+item_count = 4
+popup/item_0/text = "Select Object..."
+popup/item_1/text = "= Particle"
+popup/item_1/id = 1
+popup/item_2/text = "+ Particle"
+popup/item_2/id = 2
+popup/item_3/text = "- Particle"
+popup/item_3/id = 3
+
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_8uty3")
 
 [connection signal="item_selected" from="CanvasLayer/Control/OptionButton" to="CanvasLayer/Control/OptionButton" method="_on_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/Control/OptionButton2" to="CanvasLayer/Control/OptionButton2" method="_on_item_selected"]
