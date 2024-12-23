@@ -6,6 +6,7 @@
 [node name="NegParticle" type="Node2D"]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_hiews")
+speed = 1.2
 charge = -1
 
 [node name="Particle" type="Sprite2D" parent="."]
