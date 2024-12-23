@@ -10,6 +10,8 @@ const POS_PARTICLE = preload("res://src/particles/pos_particle.tscn")
 const NEG_PARTICLE = preload("res://src/particles/neg_particle.tscn")
 @onready var option_button_2 = $"../CanvasLayer/Control/OptionButton2"
 @export var Speed = CameraSpeed;
+@onready var node_2d = $".."
+@onready var particles = $"../Particles"
 
 func update_windowspace():
 	var size_x = ProjectSettings.get_setting("display/window/size/viewport_width")*(1/camera_2d.zoom.x)
@@ -34,15 +36,15 @@ func SpawnParticle(Type):
 		pass;
 	if Type == "= Particle":
 		var _particle = NEU_PARTICLE.instantiate();
-		get_parent().add_child(_particle);
+		particles.add_child(_particle);
 		_particle.global_position = get_global_mouse_position();
 	if Type == "+ Particle":
 		var _particle = POS_PARTICLE.instantiate();
-		get_parent().add_child(_particle);
+		particles.add_child(_particle);
 		_particle.global_position = get_global_mouse_position();
 	if Type == "- Particle":
 		var _particle = NEG_PARTICLE.instantiate();
-		get_parent().add_child(_particle);
+		particles.add_child(_particle);
 		_particle.global_position = get_global_mouse_position();
 
 func GetInput():
