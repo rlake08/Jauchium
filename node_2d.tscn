@@ -3,11 +3,14 @@
 [ext_resource type="Script" path="res://controls.gd" id="1_houcx"]
 [ext_resource type="Shader" path="res://background.gdshader" id="1_pm2is"]
 [ext_resource type="Texture2D" uid="uid://c3fa74s35ymsi" path="res://icon.svg" id="2_8uty3"]
+
 [ext_resource type="Texture2D" path="res://src/asset/img/background.png" id="2_ckiqg"]
+
 [ext_resource type="Script" path="res://option_button.gd" id="2_nh4rn"]
 [ext_resource type="Script" path="res://option_button_2.gd" id="3_gghme"]
 [ext_resource type="Script" path="res://check_button.gd" id="4_dx31f"]
 [ext_resource type="Script" path="res://reset.gd" id="5_fbisf"]
+
 [ext_resource type="Texture2D" path="res://src/asset/img/house_icon.png" id="6_io4gt"]
 [ext_resource type="Script" path="res://particles.gd" id="7_4yo50"]
 [ext_resource type="Texture2D" path="res://src/asset/img/border.png" id="12_jg4t0"]
