@@ -16,12 +16,11 @@ const NEG_PARTICLE = preload("res://src/particles/neg_particle.tscn")
 func _ready() -> void:
 	var size_x = ProjectSettings.get_setting("display/window/size/viewport_width")*(1/camera_2d.zoom.x)
 	var size_y = ProjectSettings.get_setting("display/window/size/viewport_height")*(1/camera_2d.zoom.y)
-	var size = Vector2(size_x,size_y)
+	var _size = Vector2(size_x,size_y)
 	WindowSpace.left_edge = global_position.x-size_x/2
 	WindowSpace.right_edge = global_position.x+size_x/2
 	WindowSpace.top_edge = global_position.y-size_y/2
 	WindowSpace.bottom_edge = global_position.y+size_y/2
-
 func MouseExec(Function):
 		if Function == "Empty":
 			CreateEnabled = false;
