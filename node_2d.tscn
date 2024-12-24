@@ -1,12 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://da8b4y30gboj2"]
+[gd_scene load_steps=16 format=3 uid="uid://da8b4y30gboj2"]
 
 [ext_resource type="Script" path="res://controls.gd" id="1_houcx"]
+[ext_resource type="Shader" path="res://background.gdshader" id="1_pm2is"]
 [ext_resource type="Texture2D" uid="uid://c3fa74s35ymsi" path="res://icon.svg" id="2_8uty3"]
+[ext_resource type="Texture2D" uid="uid://cv00q4r65qepd" path="res://src/asset/img/background.png" id="2_ckiqg"]
 [ext_resource type="Script" path="res://option_button.gd" id="2_nh4rn"]
 [ext_resource type="Script" path="res://option_button_2.gd" id="3_gghme"]
 [ext_resource type="Script" path="res://check_button.gd" id="4_dx31f"]
 [ext_resource type="Script" path="res://reset.gd" id="5_fbisf"]
+[ext_resource type="Texture2D" uid="uid://cica3bb334swr" path="res://src/asset/img/house_icon.png" id="6_io4gt"]
 [ext_resource type="Script" path="res://particles.gd" id="7_4yo50"]
+[ext_resource type="Texture2D" uid="uid://ddgm34eghr3cm" path="res://src/asset/img/border.png" id="12_jg4t0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4iftp"]
+shader = ExtResource("1_pm2is")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/background_texture = ExtResource("2_ckiqg")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2655f"]
 
@@ -18,10 +27,26 @@ events = [SubResource("InputEventKey_s48ck")]
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_4iftp")
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_ckiqg")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Border" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4, -4)
+texture = ExtResource("12_jg4t0")
+centered = false
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_houcx")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+anchor_mode = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_2655f")
@@ -39,6 +64,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="OptionButton" type="OptionButton" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_right = 118.0
 offset_bottom = 31.0
 focus_mode = 0
@@ -89,6 +115,20 @@ focus_mode = 0
 text = "Reset"
 script = ExtResource("5_fbisf")
 
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1122.0
+offset_top = 618.0
+offset_right = 1145.0
+offset_bottom = 641.0
+tooltip_text = "Recenter and Rezoom Camera."
+focus_mode = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_io4gt")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="Icon" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_8uty3")
@@ -100,3 +140,4 @@ script = ExtResource("7_4yo50")
 [connection signal="item_selected" from="CanvasLayer/Control/OptionButton2" to="CanvasLayer/Control/OptionButton2" method="_on_item_selected"]
 [connection signal="toggled" from="CanvasLayer/Control/CheckButton" to="CanvasLayer/Control/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="CanvasLayer/Control/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/TextureButton" to="CharacterBody2D" method="_on_texture_button_pressed"]

@@ -9,9 +9,8 @@ var OriginSpeed
 var direction: Vector2 = Vector2(0,0)
 var goal_direction: Vector2 = Vector2(0,0)
 @export var particle_base_collision_volume: Area2D = null
-@export var base_speed: float = 1.0
+@export var speed: float = 1.0
 @export var charge: int = 0
-var speed: float = 1.0
 
 func _enter_tree() -> void:
 	OriginSpeed = speed
@@ -22,7 +21,6 @@ func _enter_tree() -> void:
 		y = [-1,1].pick_random()
 	
 	goal_direction = Vector2(x,y).normalized()
-	speed = base_speed
 
 func _ready() -> void:
 	particle_base_collision_volume.area_entered.connect(hit_stuff)
@@ -52,7 +50,7 @@ func _process(delta: float) -> void:
 		goal_direction.y=-1
 	update_particle.emit()
 
-func set_charge(new_charge: float) -> void:
+func set_charge(new_charge: int) -> void:
 	charge = new_charge
 
 func hit_stuff(area: Area2D):

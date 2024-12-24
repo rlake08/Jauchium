@@ -10,7 +10,7 @@ radius = 48.0
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_dn1r8")
 particle_base_collision_volume = NodePath("CollisionArea")
-base_speed = 0.0
+speed = 1.2
 charge = -1
 
 [node name="Particle" type="Sprite2D" parent="."]
